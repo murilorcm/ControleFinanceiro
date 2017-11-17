@@ -38,11 +38,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Controle Financeiro");
         setName("frmPrincipal"); // NOI18N
-        setType(java.awt.Window.Type.POPUP);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/table.png"))); // NOI18N
         jMenu3.setText("Arquivo");
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/exclamation.png"))); // NOI18N
         jMenuItem3.setText("Sair");
         jMenu3.add(jMenuItem3);
 
@@ -68,6 +69,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/information.png"))); // NOI18N
         jMenu2.setText("Sobre");
         jMenuBar1.add(jMenu2);
 
