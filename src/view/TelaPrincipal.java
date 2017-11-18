@@ -66,6 +66,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/coins_delete.png"))); // NOI18N
         jMenuItem2.setText("A Pagar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -95,6 +100,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jDesktopPane1.add(telaCadContaReceb);
         telaCadContaReceb.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        CadastroContasPagar telaCadContaPag = new CadastroContasPagar();
+        jDesktopPane1.add(telaCadContaPag);
+        telaCadContaPag.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
