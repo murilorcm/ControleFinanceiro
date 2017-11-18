@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package controlefinanceiro;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,6 +35,7 @@ public class TelaLogin extends javax.swing.JFrame {
         txtLogin = new javax.swing.JTextField();
         btnEntrar = new javax.swing.JButton();
         txtSenha = new javax.swing.JPasswordField();
+        btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Acesso - Controle Financeiro");
@@ -51,24 +53,40 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyPressed(evt);
+            }
+        });
+
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lblSenha, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLogin, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtLogin, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEntrar)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
-                .addContainerGap(64, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addComponent(lblLogin)
                 .addGap(9, 9, 9)
                 .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -77,8 +95,10 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(btnEntrar)
-                .addGap(23, 23, 23))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEntrar)
+                    .addComponent(btnSair))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -86,13 +106,39 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        if(txtLogin.getText().equals("usuario") && txtSenha.getText().equals("123")){
-            JOptionPane.showMessageDialog(null, "Bem Vindo");
+        if(this.checkLogin(txtLogin.getText(),new String(txtSenha.getPassword()))){
+            TelaPrincipal tp = new TelaPrincipal();
+            tp.setVisible(true);
+            this.dispose();
         }
         else{
             JOptionPane.showMessageDialog(null, "Acesso Negado");
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        int escolha;
+        Object[] options = { "Confirmar", "Cancelar" };
+        escolha = JOptionPane.showOptionDialog(null, "Deseja realmente sair?", "Atenção", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        if (escolha == 0){
+            System.exit(0);
+        }  
+    }//GEN-LAST:event_btnSairActionPerformed
+    private boolean checkLogin(String login, String senha){
+        return login.equals("usuario") && senha.equals("123");
+    }
+    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(this.checkLogin(txtLogin.getText(),new String(txtSenha.getPassword()))){
+                TelaPrincipal tp = new TelaPrincipal();
+                tp.setVisible(true);
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Acesso Negado");
+            }
+        }
+    }//GEN-LAST:event_txtSenhaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -132,6 +178,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
+    private javax.swing.JButton btnSair;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JTextField txtLogin;

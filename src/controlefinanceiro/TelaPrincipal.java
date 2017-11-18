@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package controlefinanceiro;
+
+import java.awt.Dimension;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +19,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -27,10 +31,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jDPPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        mArquivo = new javax.swing.JMenu();
+        imSair = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -40,15 +44,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setTitle("Controle Financeiro");
         setName("frmPrincipal"); // NOI18N
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/table.png"))); // NOI18N
-        jMenu3.setText("Arquivo");
+        mArquivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/table.png"))); // NOI18N
+        mArquivo.setText("Arquivo");
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/exclamation.png"))); // NOI18N
-        jMenuItem3.setText("Sair");
-        jMenu3.add(jMenuItem3);
+        imSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        imSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/exclamation.png"))); // NOI18N
+        imSair.setText("Sair");
+        imSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imSairActionPerformed(evt);
+            }
+        });
+        mArquivo.add(imSair);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(mArquivo);
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/coins.png"))); // NOI18N
         jMenu1.setText("Contas");
@@ -85,11 +94,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jDPPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+            .addComponent(jDPPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
         );
 
         pack();
@@ -97,16 +106,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         CadastroContasReceber telaCadContaReceb = new CadastroContasReceber();
-        jDesktopPane1.add(telaCadContaReceb);
+        jDPPrincipal.add(telaCadContaReceb);
         telaCadContaReceb.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        jDPPrincipal.removeAll(); //limpa o container
+        Dimension resolucao = jDPPrincipal.getSize(); //captura resolução do container
         CadastroContasPagar telaCadContaPag = new CadastroContasPagar();
-        jDesktopPane1.add(telaCadContaPag);
+        telaCadContaPag.setSize(resolucao); //seta a resolução da tela
+        jDPPrincipal.add(telaCadContaPag);
+        telaCadContaPag.setLocation(0, 0); //seta a posição da tela
         telaCadContaPag.setVisible(true);
-
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void imSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imSairActionPerformed
+        int escolha;
+        Object[] options = { "Confirmar", "Cancelar" };
+        escolha = JOptionPane.showOptionDialog(null, "Deseja realmente sair?", "Atenção", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        if (escolha == 0){
+            System.exit(0);
+        }  
+    }//GEN-LAST:event_imSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,13 +165,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenuItem imSair;
+    private javax.swing.JDesktopPane jDPPrincipal;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenu mArquivo;
     // End of variables declaration//GEN-END:variables
 }
