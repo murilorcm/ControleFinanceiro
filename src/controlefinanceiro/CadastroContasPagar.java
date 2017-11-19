@@ -5,6 +5,8 @@
  */
 package controlefinanceiro;
 
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -51,7 +53,7 @@ public class CadastroContasPagar extends javax.swing.JInternalFrame {
         btnExcluir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTContasPagar = new javax.swing.JTable();
 
         setClosable(true);
         setTitle("Cadastro de Contas a Pagar");
@@ -165,12 +167,22 @@ public class CadastroContasPagar extends javax.swing.JInternalFrame {
         btnInserir.setFocusable(false);
         btnInserir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnInserir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnInserir);
 
         btnExcluir.setText("Excluir");
         btnExcluir.setFocusable(false);
         btnExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnExcluir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnExcluir);
 
         btnCancelar.setText("Cancelar");
@@ -184,7 +196,7 @@ public class CadastroContasPagar extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnCancelar);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTContasPagar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -192,7 +204,7 @@ public class CadastroContasPagar extends javax.swing.JInternalFrame {
                 "Código", "Valor", "Data", "Descrição", "Número de Parcelas"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTContasPagar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -231,7 +243,7 @@ public class CadastroContasPagar extends javax.swing.JInternalFrame {
         
         lblQtdParcelas.setVisible(false);
         txtQtdParcelas.setVisible(false);
-        txtQtdParcelas.setText("");
+        txtQtdParcelas.setText("0");
         
         txtCodigo.setText("");
         txtDescricao.setText("");
@@ -245,7 +257,7 @@ public class CadastroContasPagar extends javax.swing.JInternalFrame {
         if(resParcelas == 0){
             lblQtdParcelas.setVisible(false);
             txtQtdParcelas.setVisible(false);
-            txtQtdParcelas.setText("");
+            txtQtdParcelas.setText("0");
         } 
         else {
             lblQtdParcelas.setVisible(true);
@@ -257,6 +269,19 @@ public class CadastroContasPagar extends javax.swing.JInternalFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         limparDados();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+        DefaultTableModel dtmContasPagar = (DefaultTableModel) jTContasPagar.getModel();
+        Object[] dados = {txtCodigo.getText(), ftxtValor.getText(), ftxtData.getText(), txtDescricao.getText(), txtQtdParcelas.getText()};
+        dtmContasPagar.addRow(dados);
+        limparDados();
+    }//GEN-LAST:event_btnInserirActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+
+        DefaultTableModel dtmContasPagar = (DefaultTableModel) jTContasPagar.getModel();
+        dtmContasPagar.removeRow(jTContasPagar.getSelectedRow());
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -273,7 +298,7 @@ public class CadastroContasPagar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTContasPagar;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblQtdParcelas;
     private javax.swing.JTextField txtCodigo;

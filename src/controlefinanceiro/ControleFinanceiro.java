@@ -17,7 +17,14 @@ public class ControleFinanceiro {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        TelaLogin tLogin = new TelaLogin();
+        
+        tLogin.setVisible(true);
+        
+//        do{
+//            System.out.println("continua");
+//        }while(true);
+        
     }
     
 }
