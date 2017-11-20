@@ -5,6 +5,7 @@
  */
 package controlefinanceiro;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -279,8 +280,14 @@ public class CadastroContasPagar extends javax.swing.JInternalFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
 
-        DefaultTableModel dtmContasPagar = (DefaultTableModel) jTContasPagar.getModel();
-        dtmContasPagar.removeRow(jTContasPagar.getSelectedRow());
+        if(jTContasPagar.getSelectedRow() != -1){
+            DefaultTableModel dtmContasPagar = (DefaultTableModel) jTContasPagar.getModel();
+            dtmContasPagar.removeRow(jTContasPagar.getSelectedRow());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Nenhum registro selecionado.", "Atenção", JOptionPane.WARNING_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnExcluirActionPerformed
 
 
