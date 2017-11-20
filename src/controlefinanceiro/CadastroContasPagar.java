@@ -69,6 +69,12 @@ public class CadastroContasPagar extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
+        txtDescricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescricaoActionPerformed(evt);
+            }
+        });
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não", "Sim" }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -289,6 +295,10 @@ public class CadastroContasPagar extends javax.swing.JInternalFrame {
         }
         
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescricaoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

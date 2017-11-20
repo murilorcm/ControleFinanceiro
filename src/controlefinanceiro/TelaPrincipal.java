@@ -86,6 +86,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/information.png"))); // NOI18N
         jMenu2.setText("Sobre");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -105,8 +115,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        jDPPrincipal.removeAll(); //limpa o container
+        Dimension resolucao = jDPPrincipal.getSize(); //captura resolução do container
         CadastroContasReceber telaCadContaReceb = new CadastroContasReceber();
+        telaCadContaReceb.setSize(resolucao); //seta a resolução da tela
         jDPPrincipal.add(telaCadContaReceb);
+        telaCadContaReceb.setLocation(0, 0); //seta a posição da tela
         telaCadContaReceb.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -128,6 +142,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
             System.exit(0);
         }  
     }//GEN-LAST:event_imSairActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        jDPPrincipal.removeAll(); //limpa o container
+        //Dimension resolucao = jDPPrincipal.getSize(); //captura resolução do container
+        Sobre telaSobre = new Sobre();
+        //telaSobre.setSize(resolucao); //seta a resolução da tela
+        jDPPrincipal.add(telaSobre);
+        telaSobre.setLocation(0, 0); //seta a posição da tela
+        telaSobre.setVisible(true);
+    }//GEN-LAST:event_jMenu2MouseClicked
 
     /**
      * @param args the command line arguments

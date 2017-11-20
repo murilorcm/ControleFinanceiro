@@ -9,12 +9,12 @@ package controlefinanceiro;
  *
  * @author murilorcm
  */
-public class ContaAReceber {
+public class CadastroConta {
     protected String descricao, data;
     protected double valor;
     protected int codigo;
 
-    public ContaAReceber(String descricao, String data, double valor, int codigo) {
+    public CadastroConta(String descricao, String data, double valor, int codigo) {
         this.descricao = descricao;
         this.data = data;
         this.valor = valor;
